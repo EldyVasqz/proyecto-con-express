@@ -1,17 +1,17 @@
 const listaTareas = 
      [
       {
-        id: "1",
+        id: 1,
         tarea: "Lavar la ropa",
         isCompleted: false,
       },
       {
-        id: "2",
+        id: 2,
         tarea: "Pasear al gato",
         isCompleted: false,
       },
       {
-        id: "3",
+        id: 3,
         tarea: "Asear la casa",
         isCompleted: true,
       },

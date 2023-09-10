@@ -13,21 +13,29 @@ router.post('/', (req, res) => {
 });
 
 router.delete('/:id', (req, res) => {
-    const idEliminar=req.params.id
-    const tareasActualizadas=tareas.filter((tarea)=>tarea.id===idEliminar)
+    const idEliminar=parseInt(req.params.id)
+    tareas.filter((tarea)=>tarea.id===idEliminar)
+    
     res.status(201).json({mensaje:'Tarea Eliminada'})
     res.status(404).json({mensaje:'Tarea no encontrada'})
 })
 
 router.put('/:id', (req, res) => {
-    const idEliminar=req.params.id
+    const idEliminar=parseInt(req.params.id)
+    
+    console.log(idEliminar)
+
     const index=tareas.findIndex((tarea)=>tarea.id===idEliminar)
-    const nuevaDescripcion=req.body;
-    const nuevoEstado=req.body;
-    tareas[index].tareas=nuevaDescripcion
-    tareas[index].isCompleted=nuevoEstado
+    console.log(index)
+    const {tarea, isCompleted} = req.body;
+    
+
+    tareas[index].tarea=tarea
+    tareas[index].isCompleted=isCompleted
+
     res.status(201).json({mensaje:'Tarea Actualizada'})
     res.status(404).json({mensaje:'Tarea no encontrada'})
 })
 
 module.exports=router;
+
