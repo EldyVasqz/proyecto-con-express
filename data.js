@@ -3,18 +3,18 @@ const listaTareas =
       {
         id: 1,
         tarea: "Lavar la ropa",
-        isCompleted: false,
+        isCompleted: false
       },
       {
         id: 2,
         tarea: "Pasear al gato",
-        isCompleted: false,
+        isCompleted: false
       },
       {
         id: 3,
         tarea: "Asear la casa",
-        isCompleted: true,
-      },
+        isCompleted: true
+      }
     ]
   
   module.exports=  listaTareas

@@ -14,8 +14,8 @@ router.post('/', (req, res) => {
 
 router.delete('/:id', (req, res) => {
     const idEliminar=parseInt(req.params.id)
-    tareas.filter((tarea)=>tarea.id===idEliminar)
-    
+    const indice = tareas.findIndex((tarea)=>tarea.id===idEliminar)
+    tareas.splice(indice,1)
     res.status(201).json({mensaje:'Tarea Eliminada'})
     res.status(404).json({mensaje:'Tarea no encontrada'})
 })
