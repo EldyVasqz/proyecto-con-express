@@ -1,8 +1,7 @@
-Buenas noches mi nombre es Eldy Vasquez y soy programadora Junior Full Stack trabajando actualmente como desarroladora backend.
-El dia de hoy les traigo una aplicacion llamada Lista de tareas en servidor con Express.
+Buenas noches mi nombre es Eldy Vasquez y soy programadora Junior trabajando actualmente como desarroladora backend.
+El dia de hoy les traigo la aplicacion llamada Mi Lista de tareas en servidor con Express ya con sus validaciones agregadas.
 
 La "Lista de Tareas" es una aplicación o servicio diseñado para ayudar a los usuarios a organizar y gestionar sus tareas diarias, pendientes y actividades de manera más efectiva.
-
 
 Para qué sirve:
 
