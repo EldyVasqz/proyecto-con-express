@@ -1,11 +1,15 @@
+
 const express = require('express');
+const jwt = require("jsonwebtoken");
 const router = express.Router();
+
+require("dotenv").config();
 
 const tareas=require('./data')
 
 router.use(express.json());
 
-const validarMetodo = (req, res, next) => {
+const validarMetodo = (req, res, next) => { 
     const metodo = req.method
     console.log (metodo)
     if((metodo!="POST")&&(metodo!="GET")&&(metodo!="PUT")&&((metodo!="DELETE"))){ 
@@ -17,15 +21,13 @@ const validarMetodo = (req, res, next) => {
 router.use(validarMetodo);
 
 //Cree un middleware que:
-//1. Maneje solicitudes POST con cuerpo vacio y que no tengan informacion valida o atributos faltantes.  
-//2. Maneje solicitudes PUT con cuerpo vacio y que no tengan informacion valida o atributos faltantes. 
-
 const validarErrores = (req, res, next) => {
 const tarea = req.body
 console.log(tarea)
 const metodo = req.method
 console.log(Object.keys(tarea).length)
 
+//1. Maneje solicitudes POST con cuerpo vacio y que no tengan informacion valida o atributos faltantes.  
 if (metodo==="POST") {
     if(!tarea){
         return res.status(404).send({mensaje:"Tarea no valida"})
@@ -37,9 +39,10 @@ if (metodo==="POST") {
         return res.status(404).send({mensaje:"Faltan atributos"})
     }
 
-    next()
+    next()  
 };
 
+//2. Maneje solicitudes PUT con cuerpo vacio y que no tengan informacion valida o atributos faltantes. 
 if (metodo==="PUT") {
     if(!tarea){
         return res.status(404).send({mensaje:"Tarea no valida"})
@@ -58,6 +61,27 @@ router.post('/', validarErrores, (req, res) => {
     console.log(nuevaTarea);
     tareas.push(nuevaTarea)
     res.json(tareas);
+});
+
+//Cree una solicitud POST para el proceso de autenticacion
+router.post('/login', (req, res) => {
+    const userName = req.body.user; 
+    const passUser = req.body.pass;
+
+    if(userName === "user" && passUser === "1234"){
+        const payload = {
+            rol: "admin",
+            user: "user",
+            name: "Arely"
+        }   
+
+        const token = jwt.sign(payload, process.env.SECRET_KEY);
+
+        res.status(200).send({mensaje:"Bienvenido a la aplicacion", token})
+    } else {
+        res.status(400).send("Credenciales incorrectas")
+    }
+
 });
 
 //Cree un middleware a nivel de aplicacion para gestionar que solo lleguen solicitudes HTTP validos de lo contrario que devuelva un error
@@ -94,5 +118,7 @@ router.put('/:id', validarErrores, validarMetodo, (req, res) => {
 
 })
 
-module.exports=router;
+
+
+module.exports=router;  
 

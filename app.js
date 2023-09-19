@@ -1,6 +1,6 @@
 const express = require('express');
 const app = express();
-const port = 8076;
+const port = 8070;
 
 const vista=require('./list-view-router')
 const editar=require('./list-edit-router')
@@ -14,6 +14,6 @@ app.use('/tareas',editar)
 
 app.listen(port, () => {
   console.log(`La app está escuchando en el puerto ${port}`);
-}); 
+});  
 
 
