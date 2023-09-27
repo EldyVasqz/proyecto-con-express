@@ -18,4 +18,4 @@ const listaTareas =
       }
     ]
   
-  module.exports=  listaTareas
+  module.exports =  listaTareas
